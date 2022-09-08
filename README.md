@@ -1,4 +1,4 @@
-# Prevent query generation for foriegnkey column in Blazor DataGrid
+# Prevent query generation for foreignkey column in Blazor DataGrid
 
 This sample is created to demonstrate on how we can prevent the query generation for foreign key column when data is fetched from remote datasource for foreign key column. 
 
