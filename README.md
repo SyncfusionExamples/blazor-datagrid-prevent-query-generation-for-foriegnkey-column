@@ -9,7 +9,8 @@ This application consist of two projects.
 
 ## Prerequisites
 
-Visual Studio 2022
+* Visual Studio 2022
+* Visual Studio Code
 
 ## How to run this application?
 
