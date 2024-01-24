@@ -15,6 +15,6 @@ This application consist of two projects.
 ## How to run this application?
 
 * Checkout this project to a location in your disk.
-* Open the solution file using the Visual Studio 2022.
-* Restore the NuGet packages by rebuilding the solution.
-* Run the project.
+* First, open the solution file of OdataV4Service using the Visual Studio 2022 and run the application.
+* Next, Open the solution file of `Grid_PreventQueryGeneration` using the Visual Studio 2022.
+* Restore the NuGet packages by rebuilding the solution and run the project.
