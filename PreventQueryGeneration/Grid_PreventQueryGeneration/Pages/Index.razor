@@ -1,62 +1,75 @@
 ﻿@page "/"
 
-@using System.ComponentModel.DataAnnotations;
-@using Syncfusion.Blazor
-@using Syncfusion.Blazor.Data
-@using Syncfusion.Blazor.Grids
-@using Syncfusion.Blazor.DropDowns
-@using Newtonsoft.Json
+<span class="pageheader">Selected Controls</span>
+<br />
+<p class="pagecontent">The following Syncfusion Blazor components can be set up in an application for you with the Syncfusion Blazor Template Studio. A fast, easy start with Syncfusion Blazor components lets you concentrate on the important part: learning.</p>
+<div class="controlregion">
 
-<SfGrid ID="Grid" @ref="Grid" Query="@currentQuery" TValue="Book" Toolbar="@ToolbarItems" Height="100%" AllowPaging="true" AllowSorting="true" AllowFiltering="true">
-    <GridPageSettings PageSize="10" PageSizes="true"></GridPageSettings>
-    <SfDataManager Url="http://localhost:64956/odata/books" Adaptor="Adaptors.ODataV4Adaptor"></SfDataManager>
-    <GridEvents TValue="Book" OnActionBegin="OnActionBegin" />
-    <GridEditSettings AllowAdding="true" AllowEditing="true" AllowDeleting="true" Mode="@EditMode.Normal"></GridEditSettings>
-    <GridColumns>
-        <GridColumn Field=@nameof(Book.Id) IsPrimaryKey="true" Width="150"></GridColumn>
-        <GridForeignColumn TValue="Customer" Field=@nameof(Book.CustomerId) AllowFiltering="true" ForeignKeyValue="Name" ForeignKeyField="Id" HeaderText="Name" Width="100">
-            <SfDataManager Url="http://localhost:64956/odata/customers" Adaptor="Adaptors.ODataV4Adaptor"></SfDataManager>
-        </GridForeignColumn>
-        <GridColumn Field=@nameof(Book.CreditLimit) Width="200" EditType="EditType.NumericEdit"></GridColumn>
-        <GridColumn Field=@nameof(Book.Active) Width="200" EditType="EditType.BooleanEdit"></GridColumn>
-    </GridColumns>
-</SfGrid>
+    <h5 class="productheader"> Grids</h5>
+    <ul class="ulstyle">
+        <li class="list">
+            <NavLink class="nav-link" href="datagrid-features">
+                <span class="syncfusion-blazor-index-icons syncfusion-blazor-icon-datagrid" aria-hidden="true"></span>DataGrid
+            </NavLink>
+        </li>
 
-@code {
-    SfGrid<Book> Grid { get; set; }
-    private Query currentQuery = new Query();
-    public List<string> ToolbarItems = new List<string>() { "Add", "Edit", "Delete", "Update", "Cancel", "Search" };
+    </ul>
 
-    private void OnActionBegin(Syncfusion.Blazor.Grids.ActionEventArgs<Book> args)
-    {
-        if (args.RequestType == Syncfusion.Blazor.Grids.Action.Filtering)
-        {
-            if (String.Equals(args.CurrentFilteringColumn, nameof(Book.CustomerId), StringComparison.OrdinalIgnoreCase))
-            {
-                args.PreventFilterQuery = true;
-                currentQuery = new Query().Where("Customer/Name", args.CurrentFilterObject.Operator.ToString().ToLower(), args.CurrentFilterObject.Value, true, true);
-            }
-        }
+</div>
+<style>
+    .ulstyle {
+        margin-top: 10px;
+        margin-bottom: 20px;
+        display: inline-block;
+        list-style-type: none !important;
+        padding-left: 0px !important;
     }
 
-    public class Book
-    {
-        [Key]
-        public Guid Id { get; set; }
-        public Guid CustomerId { get; set; }
-        public Guid CustomerId1 { get; set; }
-        public virtual Customer Customer { get; set; }
-        public int CreditLimit { get; set; }
-        public bool Active { get; set; }
-        public bool IsDeleted { get; set; }
+    .controlregion {
+        margin-top: 50px;
     }
 
-    public class Customer
-    {
-        [Key]
-        public Guid Id { get; set; }
-        public string Name { get; set; }
-        [JsonIgnore]
-        public List<Book> CustomerBooks { get; set; }
+    .pagecontent {
+        font-family: sans-serif !important;
+font-size: 16px;
+color: #333333;
+letter-spacing: 0.34px;
+line-height: 24px;
+margin-top: 10px;
     }
-}
+    
+
+    .list {
+        float: left;
+        line-height: 40px;
+        min-width: 280px;
+        font-family: sans-serif !important;
+        font-size: 19px;
+        color: #0073DC;
+    }
+
+    .syncfusion-blazor-index-icons {
+        font-family: "sbicons";
+        color: #0073DC !important;
+        font-style: normal;
+        font-weight: normal;
+        font-variant: normal;
+        text-transform: none;
+        padding-right: 13px;
+        font-size: 18px;
+    }
+
+    .productheader {
+        font-family: sans-serif !important;
+        font-size: 19px !important;
+        color: #333333 !important;
+        letter-spacing: 0.41px ;
+    }
+
+    .pageheader {
+        font-family: sans-serif !important;
+        font-size: 24px !important;
+        color: #333333 ;
+        font-weight: bold !important;
+    }
+</style>
